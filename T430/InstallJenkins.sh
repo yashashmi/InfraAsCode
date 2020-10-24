@@ -9,7 +9,11 @@ sudo service jenkins stop
 sudo cp --backup /etc/default/jenkins /etc/default/jenkins.bak
 sudo sed -i 's/HTTP_PORT=8080/HTTP_PORT=8040/' /etc/default/jenkins
 sudo chown jenkins:jenkins /home/vagrant/jenkinsHome/
-sudo cp -prv /var/lib/jenkins/ /home/vagrant/jenkinsHome/
+
+#To copy all files from default Jenkins home path to new path.
+#However this shouldn't ever be required because we always want to redirect to new home path.
+#sudo cp -prv /var/lib/jenkins/ /home/vagrant/jenkinsHome/ 
+
 sudo usermod -d /home/vagrant/jenkinsHome/ jenkins
 sudo sed -i 's+JENKINS_HOME=/var/lib/$NAME+JENKINS_HOME=/home/vagrant/jenkinsHome/+' /etc/default/jenkins
 sudo service jenkins start
