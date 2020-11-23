@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: update repository index
+      apt:
+        update_cache: yes
+      when: ansible_distribution in ["Ubuntu", "Debian"]
+
+    - name: install java and jenkins package
+      apt:
+        name:
+          - openjdk-8-jre
+          - openjdk-8-jdk
+          - apache2
+        state: latest
+      when: ansible_distribution == "Ubuntu"
