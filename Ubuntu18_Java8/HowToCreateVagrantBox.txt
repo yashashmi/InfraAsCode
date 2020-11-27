@@ -1,0 +1,15 @@
+--After vagrant up, SSH into machine
+
+vagrant ssh
+
+--Within box
+sudo apt-get clean
+cat /dev/null > ~/.bash_history && history -c && exit
+
+--Outside the box
+vagrant package --output mynew.box
+vagrant box add mynewbox mynew.box
+vagrant destroy
+
+--To create new box, from any location
+vagrant init mynewbox
