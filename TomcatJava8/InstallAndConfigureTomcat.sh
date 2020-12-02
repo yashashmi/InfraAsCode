@@ -31,6 +31,7 @@ cp /home/vagrant/tomcat/host-manager/context.xml /opt/tomcat/webapps/host-manage
 
 sudo cp /home/vagrant/tomcat/tomcat.service /etc/systemd/system/
 sudo systemctl daemon-reload
+sudo systemctl enable tomcat
 sudo systemctl start tomcat
 sudo systemctl status tomcat
 sudo ufw allow 8080
