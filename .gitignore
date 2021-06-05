@@ -8,6 +8,7 @@ jenkinsHome/
 
 # Local .terraform directories
 **/.terraform/*
+**/credentials/*
 
 # .tfstate files
 *.tfstate
