@@ -16,17 +16,19 @@ provider "google" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name = "terraform-network"
+  name = "custom-network"
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "f1-micro"
-  tags         = ["web", "dev"]
+  name         = "jenkins-instance"
+  machine_type = "n1-standard-1"
+  tags         = ["web", "ssh", "http-server"]
+
+  metadata_startup_script = file("installJenkins.sh")
 
   boot_disk {
     initialize_params {
-      image = "cos-cloud/cos-stable"
+      image = "debian-cloud/debian-10"
     }
   }
 
@@ -35,5 +37,10 @@ resource "google_compute_instance" "vm_instance" {
     access_config {
     }
   }
-}
 
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = google_service_account.jenkins_sa.email
+    scopes = ["storage-rw"]
+  }
+}
