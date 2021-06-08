@@ -26,6 +26,10 @@ resource "google_compute_instance" "vm_instance" {
 
   metadata_startup_script = file("installJenkins.sh")
 
+  metadata = {
+    shutdown-script = file("shutdown_script.sh")
+  }
+
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-10"

@@ -8,8 +8,14 @@ resource "google_service_account_key" "mykey" {
   public_key_type    = "TYPE_X509_PEM_FILE"
 }
 
-resource "google_service_account_iam_binding" "jenkins-user" {
-  service_account_id = google_service_account.jenkins_sa.name
-  role               = "roles/iam.serviceAccountUser"
-  members            = ["serviceAccount:${google_service_account.jenkins_sa.email}"]
+resource "google_project_iam_member" "storage-admin" {
+  project = "my-second-project-314314"
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${google_service_account.jenkins_sa.email}"
+}
+
+resource "google_project_iam_member" "compute-admin" {
+  project = "my-second-project-314314"
+  role    = "roles/compute.instanceAdmin.v1"
+  member  = "serviceAccount:${google_service_account.jenkins_sa.email}"
 }
