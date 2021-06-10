@@ -1,7 +1,7 @@
 jenkins:
   agentProtocols:
-    - "JNLP4-connect"
-    - "Ping"
+  - "JNLP4-connect"
+  - "Ping"
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
@@ -10,7 +10,7 @@ jenkins:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
-    - name: "master"
+  - name: "master"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -28,24 +28,24 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
       users:
-        - id: "yasub"
-          name: "yasub"
-          properties:
-            - "myView"
-            - preferredProvider:
-                providerId: "default"
-            - "timezone"
-            - mailer:
-                emailAddress: "yas@abc.com"
-            - "apiToken"
+      - id: "yasub"
+        name: "yasub"
+        properties:
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - "timezone"
+        - mailer:
+            emailAddress: "yas@abc.com"
+        - "apiToken"
   slaveAgentPort: -1
   updateCenter:
     sites:
-      - id: "default"
-        url: "https://updates.jenkins.io/update-center.json"
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
   views:
-    - all:
-        name: "all"
+  - all:
+      name: "all"
   viewsTabBar: "standard"
 security:
   apiToken:
@@ -57,7 +57,7 @@ security:
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
-      - "jobBuildDiscarder"
+    - "jobBuildDiscarder"
   buildStepOperation:
     enabled: false
   email-ext:
@@ -71,7 +71,7 @@ unclassified:
       Check console output at $BUILD_URL to view the results.
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
-      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
@@ -108,8 +108,8 @@ unclassified:
 tool:
   git:
     installations:
-      - home: "git"
-        name: "Default"
+    - home: "git"
+      name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"
