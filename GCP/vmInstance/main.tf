@@ -16,11 +16,11 @@ provider "google" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "jenkins-instance"
+  name         = "apache-instance"
   machine_type = "n1-standard-1"
-  tags         = ["web", "ssh", "http-server"]
+  tags         = ["http-server", "https-server"]
 
-  metadata_startup_script = file("installJenkins.sh")
+  metadata_startup_script = file("installation.sh")
 
   # metadata = {
   #   shutdown-script = file("shutdown_script.sh")
@@ -33,14 +33,8 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    subnetwork = google_compute_subnetwork.customJenkins.name
+    subnetwork = google_compute_subnetwork.subnet-us.name
     access_config {
     }
-  }
-
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.jenkins_sa.email
-    scopes = ["storage-rw"]
   }
 }
