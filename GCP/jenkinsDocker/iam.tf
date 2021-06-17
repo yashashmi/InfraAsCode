@@ -4,9 +4,14 @@ resource "google_service_account" "jenkins_sa" {
   description  = "Created by Terraform. Service Account for managing Jenkins instance."
 }
 
-resource "google_service_account_key" "mykey" {
+resource "local_file" "jenkins_ce_sa_key_content" {
+  content  = base64decode(google_service_account_key.jenkins_ce_sa_key.private_key)
+  filename = "${path.module}/jenkins_ce_sa_key.json"
+}
+
+
+resource "google_service_account_key" "jenkins_ce_sa_key" {
   service_account_id = google_service_account.jenkins_sa.name
-  public_key_type    = "TYPE_X509_PEM_FILE"
 }
 
 resource "google_project_iam_member" "storage-admin" {

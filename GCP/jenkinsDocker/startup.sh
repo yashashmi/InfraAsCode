@@ -26,11 +26,18 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo mkdir -p /shared/jenkins
 cd /shared/jenkins
 
-echo "Jenkins_Password=${jenkinsUser}" >> /shared/jenkins/.env
 
-sudo git clone https://github.com/yashashmi/praqma-jenkins-casc.git
+# echo "Jenkins_Password=${jenkinsUser}" >> /shared/jenkins/.env
 
-cd praqma-jenkins-casc
+sudo git clone https://github.com/yashashmi/JenkinsCasC.git
 
-sudo docker-compose --env-file /shared/jenkins/.env up -d --build
+sudo sh -c "echo $(gcloud secrets versions access 1 --secret='JenkinsUser')>/shared/jenkins/JenkinsCasC/secrets/jenkins"
+sudo sh -c "echo $(gcloud secrets versions access 1 --secret='GithubUser')>/shared/jenkins/JenkinsCasC/secrets/github"
+sudo sh -c 'echo $(gcloud secrets versions access 1 --secret='JenkinsServiceAccountKey' | base64)>/shared/jenkins/JenkinsCasC/secrets/cred'
+
+
+cd JenkinsCasC
+
+#sudo docker-compose --env-file /shared/jenkins/.env up -d --build
+#sudo docker-compose up -d --build
 

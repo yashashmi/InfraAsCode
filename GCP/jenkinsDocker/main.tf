@@ -35,10 +35,10 @@ data "template_file" "default" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name = "jenkins-instance"
+  name         = "jenkins-instance"
   machine_type = "e2-medium"
   #machine_type = "f1-micro"
-  tags         = ["web", "ssh", "http-server"]
+  tags = ["web", "ssh", "http-server"]
 
   metadata_startup_script = data.template_file.default.rendered
 
