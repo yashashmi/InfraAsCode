@@ -2,7 +2,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "3.5.0"
+      version = "3.11.0"
     }
   }
 }
@@ -18,7 +18,7 @@ provider "google" {
 resource "google_compute_instance" "vm_instance" {
   name         = "apache-instance"
   machine_type = "n1-standard-1"
-  tags         = ["http-server", "https-server"]
+  tags         = ["web", "ssh", "http-server"]
 
   metadata_startup_script = file("installation.sh")
 
@@ -31,6 +31,8 @@ resource "google_compute_instance" "vm_instance" {
       image = "debian-cloud/debian-10"
     }
   }
+
+
 
   network_interface {
     subnetwork = google_compute_subnetwork.subnet-us.name
