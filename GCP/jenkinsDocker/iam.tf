@@ -5,12 +5,12 @@ resource "google_service_account" "sa-jenkins" {
 }
 
 resource "local_file" "local-file-key-sa-jenkins" {
-  content  = base64decode(google_service_account_key.jenkins_ce_sa_key.private_key)
+  content  = base64decode(google_service_account_key.service-account-key-jenkins.private_key)
   filename = "${path.module}/jenkins_ce_sa_key.json"
 }
 
 
-resource "google_service_account_key" "jenkins_ce_sa_key" {
+resource "google_service_account_key" "service-account-key-jenkins" {
   service_account_id = google_service_account.sa-jenkins.name
 }
 
