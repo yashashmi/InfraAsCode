@@ -1,4 +1,4 @@
-resource "google_compute_firewall" "ssh_allow" {
+resource "google_compute_firewall" "fw-custom-allow-ssh" {
   name    = "ssh-fw"
   network = google_compute_network.vpc_network.name
 
@@ -10,7 +10,7 @@ resource "google_compute_firewall" "ssh_allow" {
   target_tags = ["ssh"]
 }
 
-resource "google_compute_firewall" "custom-allow-http" {
+resource "google_compute_firewall" "fw-custom-allow-http" {
   name    = "http-fw"
   network = google_compute_network.vpc_network.name
 
