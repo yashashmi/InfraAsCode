@@ -20,7 +20,7 @@ resource "google_compute_instance" "vm_instance" {
   machine_type = "n1-standard-1"
   tags         = ["web", "ssh", "http-server"]
 
-  metadata_startup_script = file("installation.sh")
+  metadata_startup_script = file("apache-docker-setup.sh")
 
   # metadata = {
   #   shutdown-script = file("shutdown_script.sh")
@@ -35,7 +35,7 @@ resource "google_compute_instance" "vm_instance" {
 
 
   network_interface {
-    subnetwork = google_compute_subnetwork.subnet-us.name
+    subnetwork = google_compute_subnetwork.subnet-us-brown.name
     access_config {
     }
   }

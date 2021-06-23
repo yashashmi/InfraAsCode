@@ -1,6 +1,6 @@
-resource "google_compute_firewall" "ssh_allow" {
-  name    = "ssh-fw"
-  network = google_compute_network.vpc_network.name
+resource "google_compute_firewall" "brown-allow-ssh" {
+  name    = "brown-allow-ssh"
+  network = google_compute_network.vpc-network-brown.name
 
   allow {
     protocol = "tcp"
@@ -10,9 +10,9 @@ resource "google_compute_firewall" "ssh_allow" {
   target_tags = ["ssh"]
 }
 
-resource "google_compute_firewall" "custom-allow-http" {
-  name    = "http-fw"
-  network = google_compute_network.vpc_network.name
+resource "google_compute_firewall" "brown-allow-http" {
+  name    = "brown-allow-http"
+  network = google_compute_network.vpc-network-brown.name
 
   allow {
     protocol = "tcp"
