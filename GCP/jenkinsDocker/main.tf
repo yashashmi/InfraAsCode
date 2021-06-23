@@ -27,20 +27,20 @@ provider "google-beta" {
 
 }
 
-data "template_file" "default" {
+data "template_file" "template-file-startup" {
   template = file("startup.sh")
   vars = {
-    jenkinsUser = "${data.google_secret_manager_secret_version.JenkinsUser.secret_data}"
+    jenkinsUser = "${data.google_secret_manager_secret_version.secret-manager-jenkins.secret_data}"
   }
 }
 
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "ci-jenkins" {
   name         = "jenkins-instance"
   machine_type = "e2-medium"
   #machine_type = "f1-micro"
   tags = ["web", "ssh", "http-server"]
 
-  metadata_startup_script = data.template_file.default.rendered
+  metadata_startup_script = data.template_file.template-file-startup.rendered
 
   #metadata_startup_script = "echo ENVVAR=${data.google_secret_manager_secret_version.my-secret.secret_data} >> /etc/profile"
   # metadata = {

@@ -4,7 +4,7 @@ resource "google_service_account" "sa-jenkins" {
   description  = "Created by Terraform. Service Account for managing Jenkins instance."
 }
 
-resource "local_file" "key-sa-jenkins" {
+resource "local_file" "local-file-key-sa-jenkins" {
   content  = base64decode(google_service_account_key.jenkins_ce_sa_key.private_key)
   filename = "${path.module}/jenkins_ce_sa_key.json"
 }
