@@ -1,0 +1,23 @@
+{
+    "builders": [{
+        "type": "googlecompute",
+        "project_id": "my-second-project-314314",
+        "source_image": "debian-10-buster-v20210701",
+        "disk_size": "10",
+        "image_name": "java-build-node-jenkins-v3",
+        "image_family": "jenkins-agent",
+        "ssh_username": "packer",
+        "zone": "us-central1-a",
+        "account_file": "../credentials/packer-sa.json"
+    }],
+    "provisioners": [{
+            "type": "file",
+            "source": "settings.xml",
+            "destination": "/tmp/settings.xml"
+        },
+        {
+            "type": "shell",
+            "script": "java-maven-selenium.sh"
+        }
+    ]
+}
