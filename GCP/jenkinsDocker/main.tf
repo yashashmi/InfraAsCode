@@ -49,7 +49,7 @@ resource "google_compute_instance" "ci-jenkins" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-10"
+      image = "docker-image-jenkins-v1"
     }
   }
 
