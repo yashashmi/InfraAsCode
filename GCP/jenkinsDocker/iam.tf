@@ -37,3 +37,15 @@ resource "google_project_iam_member" "secret-manager-viewer" {
   role    = "roles/secretmanager.viewer"
   member  = "serviceAccount:${google_service_account.sa-jenkins.email}"
 }
+
+resource "google_project_iam_member" "monitoring-metric-writer" {
+  project = var.project
+  role    = "roles/monitoring.metricWriter"
+  member  = "serviceAccount:${google_service_account.sa-jenkins.email}"
+}
+
+resource "google_project_iam_member" "logging-log-writer" {
+  project = var.project
+  role    = "roles/logging.logWriter"
+  member  = "serviceAccount:${google_service_account.sa-jenkins.email}"
+}
